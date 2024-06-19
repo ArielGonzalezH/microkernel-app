@@ -11,7 +11,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->loadPlugins();
+    }
+
+    protected function loadPlugins()
+    {
+        $plugins = config('plugins.enabled');
+
+        foreach ($plugins as $plugin) {
+            $pluginServiceProvider = "plugins\\{$plugin}\\{$plugin}ServiceProvider";
+            if (class_exists($pluginServiceProvider)) {
+                $this->app->register($pluginServiceProvider);
+            }
+        }
     }
 
     /**

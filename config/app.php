@@ -123,4 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+        // Otros proveedores de servicios...
+        plugins\CoursesManager\Controllers\CourseController::class,
+    ],
+
 ];
